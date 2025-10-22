@@ -24,7 +24,6 @@ d = input('input d ');  nx = input('input nx ');   lambda = .01; lams = .01;
 
  ny = nx; nz = nx;  [x,y,z,TET] =  type5(nx,ny,nz,ax,bx,ay,by,az,bz);
   [TET,E,F,evertex,fvertex,tetvol,fstar,fb] = tetlistsb(x,y,z,TET);
- [h(l),el] = meshsize3(x,y,z,evertex);
  S = c1smooth3(d,x,y,z,TET,E,F,evertex,fvertex,fstar,fb);
 [c,G,t1,t2] = ipbf0d3(d,x,y,z,TET,E,F,evertex,fvertex,...
     a1,a2,a3,a4,a5,a6,f,g,xb,yb,zb,S,lambda,lams);

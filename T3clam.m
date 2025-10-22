@@ -6,12 +6,12 @@ az = min(zp); bz = max(zp); np = length(xp);
 
 % choose PDE
 pde = input('input pde ');
-[u,f,g] = setpde3L(pde);
+[u,f,g] = setpde3L(pde); mc = 3;
 
 % Choose B
 nb = input('input nb ');
 [xb,yb,zb] = pcdown(xp,yp,zp,nb);
-gb = u(xb,yb,zb);
+gb = u(xb,yb,zb); 
 
 mi = 50; %input('input m for grid of inpts ');
 tic
@@ -20,17 +20,17 @@ tic
 
 d = input('input d ');   nx = input('input nx ');    lambs = .01; 
 lambda= input('input lambda ');  lams = lambda;
-ny = nx; nz = nx;  [x,y,z,TET] =  type5(nx,ny,nz,ax,bx,ay,by,az,bz);
-[TET,E,F,evertex,fvertex,tetvol,fstar,fb] = tetlistsb(x,y,z,TET);
-S = c1smooth3(d,x,y,z,TET,E,F,evertex,fvertex,fstar,fb);
+  ny = nx; nz = nx;  [x,y,z,TET] =  type5(nx,ny,nz,ax,bx,ay,by,az,bz);
+  [TET,E,F,evertex,fvertex,tetvol,fstar,fb] = tetlistsb(x,y,z,TET);
+ S = c1smooth3(d,x,y,z,TET,E,F,evertex,fvertex,fstar,fb);
 
 for i = 1:4
- [c,G,t1,t2] = ipbf0d3L(d,x,y,z,TET,E,F,evertex,fvertex,...
-    f,g,xb,yb,zb,S,lambda,lams);
+[c,G,t1,t2] = ipbc0d3L(d,x,y,z,TET,E,F,evertex,fvertex,...
+    f,g,xb,yb,zb,S,lambda,lams,mc);
  val = valsp3(d,x,y,z,TET,E,F,evertex,fvertex,xr,yr,zr,c);
  %a = find(isnan(val)); val(a) = []; xr(a) = []; yr(a) = []; zr(a) = [];
  err = u(xr,yr,zr) - val;
-  fprintf(' %.3f & %.2f & %d & %.2e & %.2e & %.2e \\cr \n',...
+  fprintf(' %.3f &  %.2f & %d & %.2e & %.2e & %.2e \\cr \n',...
       lambda,t1+t2,length(c),condest(G), norm(err,inf),erms(err));
  lambda = 10*lambda; lams = 10*lams;
 end;

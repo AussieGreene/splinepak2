@@ -19,7 +19,9 @@ tic
 [xr,yr,zr] = inpts3(xp,yp,zp,mi); toc;  ur = u(xr,yr,zr);
 
 
-d = input('input d ');   nx = input('input nx ');    lambda = .01; lams = .01;  
+d = input('input d ');   nx = input('input nx ');    
+lambda = .01; lams = .01;  
+%lambda = input('input lambda '); lams = lambda;
 rmax = input('input rmax '); em = zeros(1,rmax); er = zeros(1,rmax);
 
 for l = 1:rmax
