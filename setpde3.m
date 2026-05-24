@@ -117,35 +117,7 @@ uyz = @(x,y,z) 0*x.^0; uzy = @(x,y,z) 0*x.^0;
 a1 = @(x,y,z) 10+cos(x);  a2 = @(x,y,z) exp(y);  a3 = @(x,y,z) 10+sin(x); 
 a4 = @(x,y,z) cos(x);  a5 = @(x,y,z) cos(y);  a6 = @(x,y,z) cos(z); 
 
-case 12 % sin5x*sin5y*sin5z -- coef (1,1,1,1,1,1)
-u= @(x,y,z) sin(5*x).*sin(5*y).*sin(5*z);
-ux = @(x,y,z) 5*cos(5*x).*sin(5*y).*sin(5*z);
-uy = @(x,y,z) 5*sin(5*x).*cos(5*y).*sin(5*z);
-uz = @(x,y,z) 5*sin(5*x).*sin(5*y).*cos(5*z);
-uxx = @(x,y,z) -25*u(x,y,z);
-uyy = @(x,y,z) -25*u(x,y,z);
-uzz = @(x,y,z) -25*u(x,y,z);
-uxy = @(x,y,z) 25*cos(5*x).*cos(5*y).*sin(5*z);
-uxz = @(x,y,z) 25*cos(5*x).*sin(5*y).*cos(5*z);
-uyz = @(x,y,z) 25*sin(5*x).*cos(5*y).*cos(5*z);
-a1 = @(x,y,z) x.^0;  a2 = @(x,y,z) y.^0;  a3 = @(x,y,z) z.^0; 
-a4 = @(x,y,z) x.^0;  a5 = @(x,y,z) y.^0;  a6 = @(x,y,z) z.^0; 
-
-case 13 % sin5x*sin5y*sin5z -- coef (1,1,1,10,10,10)
-u= @(x,y,z) sin(5*x).*sin(5*y).*sin(5*z);
-ux = @(x,y,z) 5*cos(5*x).*sin(5*y).*sin(5*z);
-uy = @(x,y,z) 5*sin(5*x).*cos(5*y).*sin(5*z);
-uz = @(x,y,z) 5*sin(5*x).*sin(5*y).*cos(5*z);
-uxx = @(x,y,z) -25*u(x,y,z); 
-uyy = @(x,y,z) -25*u(x,y,z); 
-uzz = @(x,y,z) -25*u(x,y,z);
-uxy = @(x,y,z) 25*cos(5*x).*cos(5*y).*sin(5*z);
-uxz = @(x,y,z) 25*cos(5*x).*sin(5*y).*cos(5*z);
-uyz = @(x,y,z) 25*sin(5*x).*cos(5*y).*cos(5*z);
-a1 = @(x,y,z) x.^0;  a2 = @(x,y,z) y.^0;  a3 = @(x,y,z) z.^0; 
-a4 = @(x,y,z) 10*x.^0;  a5 = @(x,y,z) 10*y.^0;  a6 = @(x,y,z) 10*z.^0; 
-
-case 14 % sin(8) + sin(12) + sin(14)
+case 12 % sin(8) + sin(12) + sin(14)
 u = @(x,y,z) sin(8*x) + sin(12*y) + sin(14*z);
 ux = @(x,y,z)  8*cos(8*x);
 uy = @(x,y,z) 12*cos(12*y);
@@ -159,11 +131,40 @@ uyz = @(x,y,z) 0*x.^0; uzy = @(x,y,z) 0*x.^0;
 a1 = @(x,y,z) 10+cos(x);  a2 = @(x,y,z) exp(y);  a3 = @(x,y,z) 10+sin(x);
 
 
-end;
 
+% LAST TWO EXAMPLES ARE NOT ELLIPTIC
+
+
+case 13 % sin5x*sin5y*sin5z -- coef (1,1,1,1,1,1) WEAK ELLIPTIC
+u= @(x,y,z) sin(5*x).*sin(5*y).*sin(5*z);
+ux = @(x,y,z) 5*cos(5*x).*sin(5*y).*sin(5*z);
+uy = @(x,y,z) 5*sin(5*x).*cos(5*y).*sin(5*z);
+uz = @(x,y,z) 5*sin(5*x).*sin(5*y).*cos(5*z);
+uxx = @(x,y,z) -25*u(x,y,z);
+uyy = @(x,y,z) -25*u(x,y,z);
+uzz = @(x,y,z) -25*u(x,y,z);
+uxy = @(x,y,z) 25*cos(5*x).*cos(5*y).*sin(5*z);
+uxz = @(x,y,z) 25*cos(5*x).*sin(5*y).*cos(5*z);
+uyz = @(x,y,z) 25*sin(5*x).*cos(5*y).*cos(5*z);
+a1 = @(x,y,z) x.^0;  a2 = @(x,y,z) y.^0;  a3 = @(x,y,z) z.^0; 
+a4 = @(x,y,z) x.^0;  a5 = @(x,y,z) y.^0;  a6 = @(x,y,z) z.^0; 
+
+case 14 % sin5x*sin5y*sin5z -- coef (1,1,1,10,10,10) NON-ELLIPTIC
+u= @(x,y,z) sin(5*x).*sin(5*y).*sin(5*z);
+ux = @(x,y,z) 5*cos(5*x).*sin(5*y).*sin(5*z);
+uy = @(x,y,z) 5*sin(5*x).*cos(5*y).*sin(5*z);
+uz = @(x,y,z) 5*sin(5*x).*sin(5*y).*cos(5*z);
+uxx = @(x,y,z) -25*u(x,y,z); 
+uyy = @(x,y,z) -25*u(x,y,z); 
+uzz = @(x,y,z) -25*u(x,y,z);
+uxy = @(x,y,z) 25*cos(5*x).*cos(5*y).*sin(5*z);
+uxz = @(x,y,z) 25*cos(5*x).*sin(5*y).*cos(5*z);
+uyz = @(x,y,z) 25*sin(5*x).*cos(5*y).*cos(5*z);
+a1 = @(x,y,z) x.^0;  a2 = @(x,y,z) y.^0;  a3 = @(x,y,z) z.^0; 
+a4 = @(x,y,z) 10*x.^0;  a5 = @(x,y,z) 10*y.^0;  a6 = @(x,y,z) 10*z.^0; 
+
+end;
 g = @(x,y,z) u(x,y,z) ;
 f = @(x,y,z) a1(x,y,z).*uxx(x,y,z) + a2(x,y,z).*uyy(x,y,z)  + ...
    a3(x,y,z).*uzz(x,y,z) + 2*a4(x,y,z).*uxy(x,y,z) + 2*a5(x,y,z).*uxz(x,y,z) + ...
       2*a6(x,y,z).*uyz(x,y,z);
-
-

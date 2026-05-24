@@ -31,7 +31,7 @@ for l = 1:rmax
  [h(l),el] = meshsize3(x,y,z,evertex);
  S = c1smooth3(d,x,y,z,TET,E,F,evertex,fvertex,fstar,fb);
 [c,G,t1,t2] = ipbc0d3(d,x,y,z,TET,E,F,evertex,fvertex,...
-      a1,a2,a3,f,g,xb,yb,zb,S,lambda,lams,mc);
+      a1,a2,a3,a4,a5,a6,f,g,xb,yb,zb,S,lambda,lams,mc);
  val = valsp3(d,x,y,z,TET,E,F,evertex,fvertex,xr,yr,zr,c);
 err = u(xr,yr,zr) - val; io = find(isnan(err) == 1); err(io) = [];
 em(l) = norm(err,inf); er(l) = erms(err);
