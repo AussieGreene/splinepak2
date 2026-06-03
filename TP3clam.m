@@ -31,9 +31,9 @@ mx = input('input mx ');  my = mx; mz= mx;
 
 lambda = input('input lambda ');
 for i = 1:4
-[C,G,t1,t2] = ipbctp3L(dx,dy,dz,xe,ye,ze,f,xb,yb,zb,gb,lambda,mc);
+[C,H,t1,t2] = ipbctp3L(dx,dy,dz,xe,ye,ze,f,xb,yb,zb,gb,lambda,mc);
  val = valtp3v(dx,dy,dz,x,y,z,C,xr,yr,zr); nc = length(C(:));  err = val - u(xr,yr,zr); 
  fprintf('%.2f & %.2f & %d & %.2e &  %.2e &  %.2e \\cr \n',...
-        lambda,t1+t2,nc,condest(G),norm(err,inf), erms(err));
+        lambda,t1+t2,nc,sqrt(condest(H'*H)),norm(err,inf), erms(err));
 lambda = 10*lambda;
 end;

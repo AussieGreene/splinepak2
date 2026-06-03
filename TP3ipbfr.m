@@ -35,12 +35,12 @@ for l = 1:rmax
  ze = [az*ones(1,dz),z,bz*ones(1,dz)];
  hr(l)  = x(2) - x(1);
 
-[C,G,t1,t2] = ipbftp3(dx,dy,dz,xe,ye,ze,f,xb,yb,zb,...
+[C,H,t1,t2] = ipbftp3(dx,dy,dz,xe,ye,ze,f,xb,yb,zb,...
     a1,a2,a3,a4,a5,a6,gb,lambda);
  val = valtp3v(dx,dy,dz,x,y,z,C,xr,yr,zr); nc = length(C(:));
  err = val - u(xr,yr,zr); em(l) = norm(err,inf); er(l) = erms(err);
  fprintf('%d & %.2f & %.2f & %d & %.2e &  %.2e &  %.2e \\cr \n',...
-  mx,t1,t2,nc,condest(G),em(l),er(l));
+  mx,t1,t2,nc,sqrt(condest(H'*H)),em(l),er(l));
 
  mx = mx+1; my = my+1; mz = mz+1;
 end;

@@ -29,7 +29,7 @@ for l = 1:rmax
   [TET,E,F,evertex,fvertex,tetvol,fstar,fb] = tetlistsb(x,y,z,TET);
  [h(l),el] = meshsize3(x,y,z,evertex);
  S = c1smooth3(d,x,y,z,TET,E,F,evertex,fvertex,fstar,fb);
-[c,G,t1,t2] = ipbc0d3L(d,x,y,z,TET,E,F,evertex,fvertex,...
+[c,H,t1,t2] = ipbc0d3L(d,x,y,z,TET,E,F,evertex,fvertex,...
       f,g,xb,yb,zb,S,lambda,lams,mc);
  val = valsp3(d,x,y,z,TET,E,F,evertex,fvertex,xr,yr,zr,c);
  a = find(isnan(val)); val(a) = []; xr(a) = []; yr(a) = []; zr(a) = [];
@@ -38,7 +38,7 @@ for l = 1:rmax
 ur(io) = []; val(io) = [];  err = ur - val;
  em(l) = norm(err,inf); er(l) = erms(err);
  fprintf(' %d & %.2f & %.2f &  %d & %.2e & %.2e & %.2e \\cr \n',...
-     nx,t1,t2,length(c),condest(G), norm(err,inf),erms(err));
+     nx,t1,t2,length(c),sqrt(condest(H'*H)), norm(err,inf),erms(err));
 nx = nx + 1;
 end;
 

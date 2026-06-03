@@ -37,12 +37,12 @@ for i= 1:rmax
  h(i) = meshsize3(x,y,z,evertex);
 
  S = c1smooth3(d,x,y,z,TET,E,F,evertex,fvertex,fstar,fb);
- [c,G,t1,t2] = ipbc0d3(d,x,y,z,TET,E,F,evertex,fvertex,...
+ [c,H,t1,t2] = ipbc0d3(d,x,y,z,TET,E,F,evertex,fvertex,...
     a1,a2,a3,a4,a5,a6,f,g,xb,yb,zb,S,lambda,lams);
  val = valsp3(d,x,y,z,TET,E,F,evertex,fvertex,xr,yr,zr,c);
  err = u(xr,yr,zr) - val; em(i) = norm(err,inf); er(i) = erms(err);
  fprintf(' %d & %.2f & %.2f &  %d & %d & %d &  %.2e & %.2e & %.2e \\cr \n',...
-     nx,t1,t2,nto,nt,length(c),condest(G), norm(err,inf),erms(err));
+     nx,t1,t2,nto,nt,length(c),sqrt(condest(H'*H)), norm(err,inf),erms(err));
   nx = nx + 1;
 
 end;

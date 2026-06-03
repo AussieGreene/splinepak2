@@ -29,9 +29,9 @@ ye = [ay*ones(1,dy),y,by*ones(1,dy)];
 ze = [az*ones(1,dz),z,bz*ones(1,dz)];
 
 for mc = 2:5
-  [C,G,t1,t2] = ipbctp3L(dx,dy,dz,xe,ye,ze,f,xb,yb,zb,gb,lambda,mc);
+  [C,H,t1,t2] = ipbctp3L(dx,dy,dz,xe,ye,ze,f,xb,yb,zb,gb,lambda,mc);
    val = valtp3v(dx,dy,dz,x,y,z,C,xr,yr,zr); nc = length(C(:));
    err = val - u(xr,yr,zr); 
    fprintf('%d & %.2f & %.2f & %d & %.2e &  %.2e &  %.2e \\cr \n',...
-    mc,t1,t2,nc,condest(G), norm(err,inf),erms(err));
+    mc,t1,t2,nc,sqrt(condest(H'*H)), norm(err,inf),erms(err));
 end;

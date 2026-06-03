@@ -26,13 +26,13 @@ for mc = 2:5
  ny = nx; nz = nx;  [x,y,z,TET] =  type5(nx,ny,nz,ax,bx,ay,by,az,bz);
   [TET,E,F,evertex,fvertex,tetvol,fstar,fb] = tetlistsb(x,y,z,TET);
  S = c1smooth3(d,x,y,z,TET,E,F,evertex,fvertex,fstar,fb);
-[c,G,t1,t2] = ipbc0d3L(d,x,y,z,TET,E,F,evertex,fvertex,...
+[c,H,t1,t2] = ipbc0d3L(d,x,y,z,TET,E,F,evertex,fvertex,...
     f,g,xb,yb,zb,S,lambda,lams,mc);
  val = valsp3(d,x,y,z,TET,E,F,evertex,fvertex,xr,yr,zr,c);
  err = ur - val;
 io = find(isnan(err) == 1); err(io) = [];
  fprintf(' %d & %.2f & %.2f &  %d & %.2e & %.2e & %.2e \\cr \n',...
-     mc,t1,t2,length(c),condest(G), norm(err,inf),erms(err));
+     mc,t1,t2,length(c),sqrt(condest(H'*H)), norm(err,inf),erms(err));
 end;
 
 return

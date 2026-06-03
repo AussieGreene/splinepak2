@@ -25,12 +25,12 @@ lambda= input('input lambda ');  lams = lambda;
  S = c1smooth3(d,x,y,z,TET,E,F,evertex,fvertex,fstar,fb);
 
 for i = 1:4
-[c,G,t1,t2] = ipbc0d3L(d,x,y,z,TET,E,F,evertex,fvertex,...
+[c,H,t1,t2] = ipbc0d3L(d,x,y,z,TET,E,F,evertex,fvertex,...
     f,g,xb,yb,zb,S,lambda,lams,mc);
  val = valsp3(d,x,y,z,TET,E,F,evertex,fvertex,xr,yr,zr,c);
  %a = find(isnan(val)); val(a) = []; xr(a) = []; yr(a) = []; zr(a) = [];
  err = u(xr,yr,zr) - val;
   fprintf(' %.3f &  %.2f & %d & %.2e & %.2e & %.2e \\cr \n',...
-      lambda,t1+t2,length(c),condest(G), norm(err,inf),erms(err));
+      lambda,t1+t2,length(c),sqrt(condest(H'*H)), norm(err,inf),erms(err));
  lambda = 10*lambda; lams = 10*lams;
 end;

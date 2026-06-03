@@ -31,10 +31,10 @@ d = input('input d ');  nx = input('input nx ');
  tetramesh(TET,[x,y,z],'FaceAlpha',0.3,'LineWidth',2);
 
  S = c1smooth3(d,x,y,z,TET,E,F,evertex,fvertex,fstar,fb);
- [c,G,t1,t2] = ipbf0d3L(d,x,y,z,TET,E,F,evertex,fvertex,...
+ [c,H,t1,t2] = ipbf0d3L(d,x,y,z,TET,E,F,evertex,fvertex,...
     f,g,xb,yb,zb,S,lambda,lams);
  val = valsp3(d,x,y,z,TET,E,F,evertex,fvertex,xr,yr,zr,c);
  err = u(xr,yr,zr) - val;
  fprintf(' %.2f & %d & %d & %d &  %.2e & %.2e & %.2e \\cr \n',...
-     t1,nto,nt,length(c),condest(G), norm(err,inf),erms(err));
+     t1,nto,nt,length(c),sqrt(condest(H'*H)), norm(err,inf),erms(err));
 

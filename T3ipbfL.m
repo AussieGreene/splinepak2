@@ -23,13 +23,13 @@ d = input('input d ');  mx = input('input nx ');   lambda = .01; lams = .01;
  my = mx; mz = mx;  [x,y,z,TET] =  type5(mx,my,mz,ax,bx,ay,by,az,bz);
   [TET,E,F,evertex,fvertex,tetvol,fstar,fb] = tetlistsb(x,y,z,TET);
  S = c1smooth3(d,x,y,z,TET,E,F,evertex,fvertex,fstar,fb);
-[c,G,t1,t2] = ipbf0d3L(d,x,y,z,TET,E,F,evertex,fvertex,...
+[c,H,t1,t2] = ipbf0d3L(d,x,y,z,TET,E,F,evertex,fvertex,...
     f,g,xb,yb,zb,S,lambda,lams);
  val = valsp3(d,x,y,z,TET,E,F,evertex,fvertex,xr,yr,zr,c);
  err = u(xr,yr,zr) - val;
 io = find(isnan(err) == 1); err(io) = [];
  fprintf(' %d & %.2f & %.2f &  %d & %.2e & %.2e & %.2e \\cr \n',...
-     mx,t1,t2,length(c),condest(G), norm(err,inf),erms(err));
+     mx,t1,t2,length(c),sqrt(condest(H'*H)), norm(err,inf),erms(err));
 
 return
 figure; plottet(x,y,z,TET,'b',1.4); axis equal; hold;

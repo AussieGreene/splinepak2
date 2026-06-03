@@ -25,11 +25,11 @@ lams= input('input initial lams ');  mc = 3;
  S = c1smooth3(d,x,y,z,TET,E,F,evertex,fvertex,fstar,fb);
 
 for i = 1:4
-[c,G,t1,t2] = ipbc0d3L(d,x,y,z,TET,E,F,evertex,fvertex,...
+[c,H,t1,t2] = ipbc0d3L(d,x,y,z,TET,E,F,evertex,fvertex,...
     f,g,xb,yb,zb,S,lambda,lams,mc);
  val = valsp3(d,x,y,z,TET,E,F,evertex,fvertex,xr,yr,zr,c);
  err = u(xr,yr,zr) - val;
   fprintf(' %.3f & %.2f & %d & %.2e & %.2e & %.2e & %.2e \\cr \n',...
-      lams,t1+t2,length(c),condest(G), norm(S*c),norm(err,inf),erms(err));
+      lams,t1+t2,length(c),sqrt(condest(H'*H)), norm(S*c),norm(err,inf),erms(err));
  lams = 10*lams;
 end;
